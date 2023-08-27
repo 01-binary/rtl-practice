@@ -1,8 +1,10 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+test('counter starts at 0', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  // screen object를 이용해서 원하는 엘리멘트에 접근
+  const counterEle = screen.getByTestId('counter');
+  // id가 count인 ele의 text가 0인지 확인
+  expect(counterEle).toHaveTextContent('0');
 });

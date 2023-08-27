@@ -1,11 +1,13 @@
 {
-  "plugins": [
-    "testing-library",
-    "jest-dom"
-  ],
+  "root": true,
+  "env": {
+    "jest": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "prettier", "testing-library", "jest-dom"],
   "extends": [
-    "react-app",
-    "react-app/jest",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended",
     "plugin:testing-library/react",
     "plugin:jest-dom/recommended"
   ]
