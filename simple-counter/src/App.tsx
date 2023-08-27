@@ -9,8 +9,18 @@ function App() {
       <header className="App-header">
         <div data-testid="counter">{count}</div>
         <div>
-          <button data-testid="minus-button">-</button>
-          <button data-testid="plus-button">+</button>
+          <button
+            data-testid="minus-button"
+            onClick={() => setCount((cnt) => cnt - 1)}
+          >
+            -
+          </button>
+          <button
+            data-testid="plus-button"
+            onClick={() => setCount((cnt) => cnt + 1)}
+          >
+            +
+          </button>
         </div>
       </header>
     </div>
