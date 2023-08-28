@@ -36,3 +36,9 @@ test('when minus button is clicked, counter decreases', () => {
   const counterEle = screen.getByTestId('counter');
   expect(counterEle).toHaveTextContent('-1');
 });
+
+test('on/off button has blue color', () => {
+  render(<App />);
+  const onOffEle = screen.getByTestId('on/off-button');
+  expect(onOffEle).toHaveStyle('background-color: blue');
+});
