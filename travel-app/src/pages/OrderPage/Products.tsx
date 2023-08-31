@@ -1,6 +1,4 @@
 const Products = ({ imagePath, name }) => {
-  console.log(imagePath, name);
-
   return (
     <div style={{ textAlign: 'center' }}>
       <img

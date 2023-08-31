@@ -1,24 +1,31 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Products from './Products';
+import ErrorBanner from '../../components/ErrorBanner';
+import Options from './Options';
 
 const Type = ({ orderType }) => {
   const [items, setItems] = useState([]);
-
-  const loadItems = async (orderType) => {
-    try {
-      const res = await axios.get(`http://localhost:5000/${orderType}`);
-      setItems(res.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     loadItems(orderType);
-  }, []);
+  }, [orderType]);
 
-  const ItemComponents = orderType === 'products' ? Products : null;
+  const loadItems = async (orderType) => {
+    try {
+      const response = await axios.get(`http://localhost:5000/${orderType}`);
+      setItems(response.data);
+    } catch (error) {
+      setError(true);
+    }
+  };
+
+  if (error) {
+    return <ErrorBanner message="에러가 발생했습니다." />;
+  }
+
+  const ItemComponents = orderType === 'products' ? Products : Options;
 
   const optionItems = items.map((item) => {
     <ItemComponents
@@ -27,6 +34,7 @@ const Type = ({ orderType }) => {
       imagePath={item.imagePath}
     />;
   });
+
   return <div>{optionItems}</div>;
 };
 
